@@ -14,7 +14,6 @@ export default class extends PureComponent {
 
   componentDidMount() {
     console.log('>>>> component did mount');
-    console.log(this.props.moduleProvider);
     if(!this.state.Component) {
       this.props.moduleProvider().then( (Component) => this.setState({ Component: Component.default }));
     }
@@ -22,9 +21,7 @@ export default class extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     console.log('>>>> component will receive props');
-    if(!this.state.Component) {
-      this.props.moduleProvider().then( (Component) => this.setState({ Component: Component.default }));
-    }
+    nextProps.moduleProvider().then( (Component) => this.setState({ Component: Component.default }));
   }
 
   render() {
